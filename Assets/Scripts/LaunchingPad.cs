@@ -8,14 +8,35 @@ public class LaunchingPad : MonoBehaviour
     public Transform animalSpawnPosition;
     public float animalFirePower = 0;
 
+    private SlingShot slingShot;
+
+    public Transform currentAnimalTransform;
+
+    private void Awake()
+    {
+        slingShot = GetComponent<SlingShot>();
+    }
+
     private void Update()
+    {
+        GenerateAnimal();
+    }
+
+    public void SpawnAnimal()
+    {
+        currentAnimalTransform = Instantiate(animalPrefabs[0], animalSpawnPosition.position, animalSpawnPosition.rotation).transform;
+        slingShot.isMouseDown = true;
+    }
+
+    private void GenerateAnimal()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject animal = Instantiate(animalPrefabs[0], animalSpawnPosition.position, animalSpawnPosition.rotation);
-            animal.GetComponent<Rigidbody>().velocity = animalSpawnPosition.forward * animalFirePower;
+            currentAnimalTransform = Instantiate(animalPrefabs[0], animalSpawnPosition.position, animalSpawnPosition.rotation).transform;
+            slingShot.isMouseDown = true;
+            /*animal.GetComponent<Rigidbody>().velocity = animalSpawnPosition.forward * animalFirePower;
             Debug.Log(animal.GetComponent<Rigidbody>().velocity);
-            Debug.Log(animalSpawnPosition.forward);
+            Debug.Log(animalSpawnPosition.forward);*/
         }
     }
 }

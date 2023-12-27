@@ -9,7 +9,16 @@ public class SlingShot : MonoBehaviour
     public Transform[] stripPosition;
     public Transform idlePosition;
 
-    private bool isMouseDown;
+    public Transform currentAnimalTransform;
+
+    private LaunchingPad launchingPad;
+
+    public bool isMouseDown;
+
+    private void Awake()
+    {
+        launchingPad = GetComponent<LaunchingPad>();
+    }
     void Start()
     {
         slingShotLine[0].positionCount = 2;
@@ -23,31 +32,20 @@ public class SlingShot : MonoBehaviour
     {
         if (isMouseDown)
         {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-            SetStripPoint(mousePosition);
-        }
-        else if (!isMouseDown)
-        {
-            IdleSlingShot();
+            Vector3 stripPosition = launchingPad.currentAnimalTransform.position;
+            stripPosition.z = stripPosition.z -0.3f;
+            SetStripPoint(stripPosition);
+            if (stripPosition.z > idlePosition.position.z)
+            {
+                IdleSlingShot();
+                isMouseDown = false;
+            }
         }
         else
         {
-            return;
+            IdleSlingShot();
         }
     }
-
-    private void OnMouseDown()
-    {
-        isMouseDown = true;
-    }
-
-    private void OnMouseUp()
-    {
-        isMouseDown = false;
-    }
-
     private void IdleSlingShot()
     {
         SetStripPoint(idlePosition.position);
