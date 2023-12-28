@@ -6,7 +6,6 @@ public class LaunchingPad : MonoBehaviour
 {
     public GameObject[] animalPrefabs;
     public Transform animalSpawnPosition;
-    public float animalFirePower = 0;
 
     private SlingShot slingShot;
 
@@ -17,9 +16,9 @@ public class LaunchingPad : MonoBehaviour
         slingShot = GetComponent<SlingShot>();
     }
 
-    private void Update()
+    private void Start()
     {
-        GenerateAnimal();
+        SpawnAnimal();
     }
 
     public void SpawnAnimal()
@@ -28,15 +27,8 @@ public class LaunchingPad : MonoBehaviour
         slingShot.isMouseDown = true;
     }
 
-    private void GenerateAnimal()
+    public void StripRefresh()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            currentAnimalTransform = Instantiate(animalPrefabs[0], animalSpawnPosition.position, animalSpawnPosition.rotation).transform;
-            slingShot.isMouseDown = true;
-            /*animal.GetComponent<Rigidbody>().velocity = animalSpawnPosition.forward * animalFirePower;
-            Debug.Log(animal.GetComponent<Rigidbody>().velocity);
-            Debug.Log(animalSpawnPosition.forward);*/
-        }
+        slingShot.Refresh();
     }
 }

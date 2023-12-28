@@ -21,10 +21,7 @@ public class SlingShot : MonoBehaviour
     }
     void Start()
     {
-        slingShotLine[0].positionCount = 2;
-        slingShotLine[1].positionCount = 2;
-        slingShotLine[0].SetPosition(0, stripPosition[0].position);
-        slingShotLine[1].SetPosition(0, stripPosition[1].position);
+        Refresh();
     }
 
     
@@ -56,5 +53,13 @@ public class SlingShot : MonoBehaviour
         slingShotLine[0].SetPosition(1, position);
         slingShotLine[1].SetPosition(1, position);
         // 두개의 Line의 점이 같은 곳의 position을 가져서 선이 이어져보임
+    }
+
+    public void Refresh()
+    {
+        slingShotLine[0].positionCount = 2;
+        slingShotLine[1].positionCount = 2;
+        slingShotLine[0].SetPosition(0, stripPosition[0].position);
+        slingShotLine[1].SetPosition(0, stripPosition[1].position);
     }
 }

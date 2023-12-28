@@ -13,6 +13,8 @@ public class Shooting : MonoBehaviour
     private Rigidbody rb;
     private SlingShot slingShot;
 
+    private Animator animator;
+
     [SerializeField]private float forcePower;
 
 
@@ -21,6 +23,7 @@ public class Shooting : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         slingShot = FindObjectOfType<SlingShot>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -46,6 +49,7 @@ public class Shooting : MonoBehaviour
     {
         isAnimalShoot = true;
         rb.isKinematic = false;
+        animator.SetBool("IsFly", true);
         mouseUpPosition = Input.mousePosition;
         Shoot(mouseDownPosition - mouseUpPosition);
     }
