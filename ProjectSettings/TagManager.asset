@@ -9,6 +9,7 @@ TagManager:
   - Floor
   - CutLine
   - FreezeAnimal
+  - Ground
   layers:
   - Default
   - TransparentFX

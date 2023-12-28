@@ -11,8 +11,20 @@ public class GameManager : MonoBehaviour
 
     public Transform idlePosition;
 
+    public int score;
+
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Update()
+    {
+        UpdateScore();
+    }
+
+    private void UpdateScore()
+    {
+        UiManager.instance.ScoreTxt.text = $"{score}";
     }
 }

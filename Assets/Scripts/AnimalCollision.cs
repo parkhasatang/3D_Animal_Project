@@ -5,14 +5,12 @@ using UnityEngine;
 public class AnimalCollision : MonoBehaviour
 {
     private Rigidbody rb;
-    /*private Collider myCollider;*/
 
     private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        /*myCollider = GetComponent<Collider>();*/
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -23,12 +21,26 @@ public class AnimalCollision : MonoBehaviour
             if (rb != null)
             {
                 animator.SetBool("IsCollision", true);
-                Destroy(rb);
-                /*myCollider.enabled = false;*/
                 gameObject.tag = "FreezeAnimal";
-                /*myCollider.enabled = true;*/
+                Invoke("DisableRigidBody", 0.1f); // Todo : CutLine로직 여기서 처리하게 해주고 Invoke를 지워줘야한다.
+                GameManager.instance.score++;
                 GameManager.instance.launchingPad.SpawnAnimal();
             }
         }
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            UiManager.instance.AnimalHitGround();
+            GameManager.instance.launchingPad.SpawnAnimal();
+            Invoke("DestroyObject", 0.1f);
+        }
+    }
+    private void DisableRigidBody()
+    {
+        Destroy(rb);
+    }
+
+    private void DestroyObject()
+    {
+        Destroy(gameObject);
     }
 }
