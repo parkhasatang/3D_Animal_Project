@@ -14,6 +14,8 @@ public class UiManager : MonoBehaviour
     private int remainHeart;
 
     public GameObject gameOverPopUp;
+    public TMP_Text popUpBestScore;
+    public TMP_Text popUpScore;
 
     private void Awake()
     {
@@ -36,17 +38,29 @@ public class UiManager : MonoBehaviour
         else
         {
             HeartImg[0].gameObject.SetActive(false);
-            gameOverPopUp.SetActive(true);
+            GameManager.instance.IsBestScore();
+            GameManager.instance.GameOver();
+            OpenGameOverPopUp();
         }
     }
     
     public void RetryBtn()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        AudioManager.instance.PlayMusic("IntroBgm");
     }
 
     public void GoToIntro()
     {
         SceneManager.LoadScene("IntroScene");
+    }
+
+    public void OpenGameOverPopUp()
+    {
+        AudioManager.instance.bgmSource.Stop();
+        AudioManager.instance.PlaySFX("GameOver");
+        gameOverPopUp.SetActive(true);
+        popUpBestScore.text = $"{PlayerPrefs.GetInt("MyBestScore")}";
+        popUpScore.text = $"{GameManager.instance.score}";
     }
 }

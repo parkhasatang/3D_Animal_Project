@@ -1572,6 +1572,7 @@ GameObject:
   - component: {fileID: 137637621}
   - component: {fileID: 137637620}
   - component: {fileID: 137637619}
+  - component: {fileID: 137637623}
   m_Layer: 5
   m_Name: SettingScreen
   m_TagString: Untagged
@@ -1664,6 +1665,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &137637623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137637618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3033c3557f1a6a14a99474f0e0b5f277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicSlider: {fileID: 1666262809}
+  _sfxSlider: {fileID: 1784128082}
 --- !u!4 &141167972 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6625984507259324429, guid: ccebfc242bed46749a5dcef87dd83423,
@@ -6152,6 +6167,8 @@ MonoBehaviour:
   - {fileID: 1016857922}
   - {fileID: 305807819}
   gameOverPopUp: {fileID: 854038395}
+  popUpBestScore: {fileID: 1113460943}
+  popUpScore: {fileID: 1091797367}
 --- !u!4 &630708571 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8944619187264996572, guid: c2cb5e8a081a26c4a94df01eb6c4e44c,
@@ -7270,6 +7287,7 @@ MonoBehaviour:
   room: {fileID: 6329386023369015226, guid: bed75fff4e3353741b43de8bc3905355, type: 3}
   idlePosition: {fileID: 1829717814}
   score: 0
+  bestScore: 0
 --- !u!4 &705425479
 Transform:
   m_ObjectHideFlags: 0

@@ -12,11 +12,8 @@ public class CutLineFloor : MonoBehaviour
     }
     private void OnTriggerStay(Collider collision)
     {
-        Debug.Log(collision.gameObject.tag);
-        
-        if (collision.gameObject.CompareTag("FreezeAnimal")) // 여기가 문제, if문 실행안됌.
+        if (collision.gameObject.CompareTag("FreezeAnimal")) // 여기가 문제, if문 실행안됌. = rigidBody없으면 인식안됌. 해결완료
         {
-            Debug.Log("맞았어");
             Vector3 upYPosition = new Vector3(GameManager.instance.room.transform.position.x, (GameManager.instance.room.transform.position.y + 2.4f), GameManager.instance.room.transform.position.z);
             generateFloorPosition = Instantiate(GameManager.instance.room, upYPosition, Quaternion.identity).transform;
             GameManager.instance.room = generateFloorPosition.gameObject;

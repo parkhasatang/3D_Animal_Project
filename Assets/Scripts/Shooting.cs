@@ -50,6 +50,7 @@ public class Shooting : MonoBehaviour
         isAnimalShoot = true;
         rb.isKinematic = false;
         animator.SetBool("IsFly", true);
+        AudioManager.instance.PlaySFX("Shoot");
         mouseUpPosition = Input.mousePosition;
         Shoot(mouseDownPosition - mouseUpPosition);
     }
